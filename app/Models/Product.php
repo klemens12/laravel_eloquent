@@ -44,7 +44,7 @@ class Product extends Model
                 
                 $products = $category->products->map(function ($product) {
                     $product->sef = route('product.product', $product->product_url);
-                    $product->thumb = $product->medias[0]['url'];
+                    $product->thumb = asset('products_sym' . $product->medias[0]['url']);
                     return $product;
                 });
                   return response()->json(['success' => true, 'message' => 'ok', 'products' => $products]);
@@ -55,7 +55,7 @@ class Product extends Model
                 }])->find(1);
                 $products = $category->products->map(function ($product) {
                     $product->sef = route('product.product', $product->product_url);
-                    $product->thumb = $product->medias[0]['url'];
+                    $product->thumb = asset('products_sym' . $product->medias[0]['url']);
                     return $product;
                 });
                   return response()->json(['success' => true, 'message' => 'ok', 'products' => $products]);
@@ -66,7 +66,7 @@ class Product extends Model
                 }])->find(1);
                 $products = $category->products->map(function ($product) {
                     $product->sef = route('product.product', $product->product_url);
-                    $product->thumb = $product->medias[0]['url'];
+                    $product->thumb = asset('products_sym' . $product->medias[0]['url']);
                     return $product;
                 });
                 return response()->json(['success' => true, 'message' => 'ok', 'products' => $products]);
@@ -89,12 +89,20 @@ class Product extends Model
                                 
                 }])->find(1);
                 
+                /* $category = Category::with(['products' => function ($query) use ($filteredWords) {
+                  $query->where(function ($subQuery) use ($filteredWords) {
+                  foreach ($filteredWords as $word) {
+                  //$subQuery->orWhereBinary('product_name', 'like', "%$word%");
+                  $subQuery->orWhere('product_name', 'LIKE', '%$word%');
+                  }
+                  });
+                  }])->find(1); */
 
                 $products = $category->products->map(function ($product) {
 
 
                     $product->sef = route('product.product', $product->product_url);
-                    $product->thumb = $product->medias[0]['url'];
+                    $product->thumb = asset('products_sym' . $product->medias[0]['url']);
                     return $product;
                 });
 
@@ -115,7 +123,7 @@ class Product extends Model
                 $products = $category->products->map(function ($product) {
                  
                     $product->sef = route('product.product', $product->product_url);
-                    $product->thumb = $product->medias[0]['url'];
+                    $product->thumb = asset('products_sym' . $product->medias[0]['url']);
                     return $product;
                     
                 });
